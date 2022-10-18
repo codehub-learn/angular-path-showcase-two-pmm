@@ -8,7 +8,7 @@ import {Joke} from "../shared/domain/joke";
 })
 export class JokeApiService {
 
-  private baseUrl: string = "https://v12.jokeapi.dev/joke/Programming,Miscellaneous,Dark,Pun,Spooky,Christmas?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single";
+  private baseUrl: string = "https://v2.jokeapi.dev/joke/Programming,Miscellaneous,Dark,Pun,Spooky,Christmas?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single";
 
   constructor(private http: HttpClient) {
   }
