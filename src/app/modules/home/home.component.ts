@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {JokeApiService} from "../../services/joke-api.service";
 import {Joke} from "../../shared/domain/joke";
-import {catchError, EMPTY, Observable, of} from "rxjs";
+import {catchError, Observable, of} from "rxjs";
+import {JokePublisherService} from "../../services/joke-publisher.service";
 
 @Component({
   selector: 'app-home',
@@ -10,20 +11,31 @@ import {catchError, EMPTY, Observable, of} from "rxjs";
 })
 export class HomeComponent implements OnInit {
 
-  jokeFromApi?: Joke;
+  jokeFromApi!: Joke;
   joke$!: Observable<Joke>;
 
-  constructor(private jokeApiService: JokeApiService) {}
+  constructor(private jokeApiService: JokeApiService, private jokePublisherService: JokePublisherService) {
+  }
 
   ngOnInit(): void {
+    this.fetchDataFromApi();
+    this.joke$ = this.jokeApiService.get();
+  }
+
+  submitJoke() {
+    this.jokePublisherService.publishJoke(this.jokeFromApi);
+    this.fetchDataFromApi();
+    console.log("joke published...");
+  }
+
+  fetchDataFromApi() {
     this.jokeApiService.get()
       .pipe(
         catchError(err => {
-        console.log("error in component");
-        return of(new Joke("error", "error category"));
-      }))
+          console.log("error in component");
+          return of(new Joke("error", "error category"));
+        }))
       .subscribe(joke => this.jokeFromApi = joke);
-    this.joke$ = this.jokeApiService.get();
   }
 
 }

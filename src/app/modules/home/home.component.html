@@ -1,17 +1,22 @@
 <div class="container" id="generalContainer">
-  <div class="row">
-    <div class="col-12">
-      <span *ngIf="jokeFromApi != undefined">
-        {{jokeFromApi.text}}
-      </span>
+  <div class="row" *ngIf="jokeFromApi != undefined">
+    <div class="col-7">
+      <input [maxLength]="jokeFromApi.text.length" class="jokeText" value="{{jokeFromApi.text}}" readonly>
+    </div>
+    <div class="col-2">
+      <input class="jokeCategory" value="{{jokeFromApi.category}}" readonly>
+    </div>
+    <div class="col-3">
+      <button class="btn btn-outline-success btn-sm" (click)="fetchDataFromApi()">Refresh</button>
+      <button class="btn btn-outline-primary btn-sm" (click)="submitJoke()">Submit</button>
     </div>
   </div>
-  <div class="row">
+<!--  <div class="row">
     <div class="col-12">
       <span *ngIf="joke$ | async as joke">
         {{joke.category}}
       </span>
     </div>
-  </div>
+  </div>-->
 </div>
 

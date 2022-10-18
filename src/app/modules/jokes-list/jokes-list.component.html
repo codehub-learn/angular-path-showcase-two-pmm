@@ -1,1 +1,28 @@
-<p>jokes-list works!</p>
+<div class="container" id="generalContainer">
+    <div class="row">
+      <div class="col-12">
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Joke</th>
+            <th scope="col">Category</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let joke of jokesToBeApproved; let i = index">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{joke.text}}</td>
+            <td>{{joke.category}}</td>
+            <td>
+              <button type="button" class="btn btn-outline-danger" (click)="removeJoke(i)">Decline</button>
+              <button type="button" class="btn btn-outline-success">Approve</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+
