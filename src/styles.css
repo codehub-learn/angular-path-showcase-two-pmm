@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.css";
+
+#generalContainer {
+  width: 91%;
+  margin-top: 2.5%;
+  padding: 0;
+  overflow: hidden;
+  border-width: 1px !important;
+  text-align: center;
+}
+
+footer {
+  position: absolute;
+  display: block;
+  bottom: 0;
+  width: 100%;
+}
